@@ -14,12 +14,22 @@ connectDB();
 
 
 app.use(express.json());
-app.use(cors({
-  origin: "https://task-duty-rho.vercel.app",  // your Vercel URL
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+import cors from "cors";
+import express from "express";
 
+const app = express();
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",            // local development
+      "https://task-duty-rho.vercel.app"  // deployed frontend
+    ],
+    credentials: true,
+  })
+);
+
+// ...rest of your server code
 
 app.get("/", (req,res)=>{
     res.send("task manager server")
