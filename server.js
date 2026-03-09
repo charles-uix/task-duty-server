@@ -15,7 +15,9 @@ connectDB();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+    origin : ["https://task-duty-rho.vercel.app", "http://localhost:5000"]
+}));
 
 app.get("/", (req,res)=>{
     res.send("task manager server")
