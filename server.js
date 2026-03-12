@@ -35,6 +35,7 @@ const app = express();
 
 const connectDB = require('./config/db.js')
 const taskRoute = require('./src/routes/taskRoute.js')
+const userRoute = require('./src/routes/userRoutes.js')
 
 dotenv.config();
 connectDB();
@@ -53,6 +54,7 @@ app.get("/", (req,res)=>{
 })
 
 app.use('/api/tasks', taskRoute)
+app.use('/api/user/auth', userRoute)
 
 const port = process.env.PORT || 5000;
 
