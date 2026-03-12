@@ -60,12 +60,11 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     // Fill all fields
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Pls eneter your email and password" });
+        .json({ message: "Pls enter your email and password" });
     }
 
     // Check if user exist
