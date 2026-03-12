@@ -6,7 +6,7 @@ const generateToken = (id) => {
   return JWT.sign(
     { id }, // payload
     process.env.JWT_SECRET, // secret key
-    { expiresIn: "30d" }, // token expiry
+    { expiresIn: "7d" }, // token expiry
   );
 };
 
