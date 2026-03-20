@@ -15,6 +15,11 @@ const taskSchema = new mongoose.Schema({
     type: String,
     enum: ["important", "urgent"],
   },
+  note: {
+    type: String,
+    trim: true,
+    default: "",
+  },
   createdAt: {
     type: Date,
     default: Date.now,

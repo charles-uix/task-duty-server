@@ -1,25 +1,25 @@
 const Task = require("../models/taskModel.js");
 
 // Create task
-// controllers/noteController.js
-import Note from "../models/Note.js"; // your Note model
-
-export const createNote = async (req, res) => {
+const createTask = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, description, tag, note } = req.body;
 
-    // Validate required fields
     if (!title) return res.status(400).json({ message: "Title is required" });
-    if (!content) return res.status(400).json({ message: "Content is required" });
+    if (!description)
+      return res.status(400).json({ message: "Description is required" });
+    if (!tag || tag.length === 0)
+      return res.status(400).json({ message: "At least one tag is required" });
 
-    // Create the note linked to the logged-in user
-    const newNote = await Note.create({
+    const newTask = await Task.create({
       title,
-      content,
-      user: req.user._id, // assumes authentication middleware sets req.user
+      description,
+      tag,
+      note,
+      user: req.user._id,
     });
 
-    res.status(201).json(newNote);
+    res.status(201).json(newTask);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });
